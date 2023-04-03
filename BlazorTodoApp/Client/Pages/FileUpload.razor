@@ -1,0 +1,64 @@
+﻿@page "/fileupload"
+@using System.Linq
+@using System.Net.Http.Headers
+@using Microsoft.Extensions.Logging
+@inject HttpClient Http
+@using Azure.Storage.Blobs;
+@using Azure.Storage.Blobs.Models;
+@using System;
+@using System.IO;
+@using BlazorTodoApp.Shared;
+@inject BlazorTodoApp.Client.Services.BlobClientService _BlobClientService;
+
+<PageTitle>Upload Files</PageTitle>
+
+<h1>Upload Files!</h1>
+
+<InputFile OnChange="@OnInputFileChange" multiple />
+
+<ul>
+    @foreach (var blob in BlobList)
+    {
+        <li>
+            <div>
+                image Name: @blob.uri
+            </div>
+            <img src="@blob.uri" style="width: 200px; height: 200px;">
+            <button @onclick="(()=>Delete(blob))">삭제</button>
+            <InputFile OnChange="((e)=> Update(e, blob))"/>
+        </li>
+    }
+</ul>
+
+@code {
+    private List<BlazorTodoApp.Shared.BlobInfo> BlobList = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        BlobList = await _BlobClientService.GetBlob();
+    }
+
+    private async Task OnInputFileChange(InputFileChangeEventArgs e)
+    {
+        using var content = new MultipartFormDataContent();
+
+        // blob 업로드
+        await _BlobClientService.Upload(e);
+        BlobList = await _BlobClientService.GetBlob();
+
+    }
+
+    // 삭제
+    private async Task Delete(BlazorTodoApp.Shared.BlobInfo blob)
+    {
+        await _BlobClientService.Delete(blob);
+        BlobList = await _BlobClientService.GetBlob();
+    }
+
+    //변경
+    private async Task Update(InputFileChangeEventArgs e, BlazorTodoApp.Shared.BlobInfo blob)
+    {
+        await _BlobClientService.Update(e, blob);
+        BlobList = await _BlobClientService.GetBlob();
+    }
+}

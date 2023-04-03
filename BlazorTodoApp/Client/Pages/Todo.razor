@@ -1,0 +1,85 @@
+﻿@page "/todo"
+@inject HttpClient Http
+@inject ILogger<Counter> logger
+@inject BlazorTodoApp.Client.Services.TodoService TodoService
+
+
+<h3>Todo</h3>
+
+<input type="text" @bind="SelectTodo.title" />
+@*<button @onclick="EditTodo">변경</button> *@
+
+<div class="my-3">
+    @if (Todos.nextTodoId == null)
+        @Todos.title
+    else
+    {
+        <a href="nextTodoItem/@Todos.nextTodoId">@Todos.title</a>
+    }
+    @*@Todos.nextTodoid == null ? @Todos.title : <a href="@Todos.nextTodoid">@Todos.title</a>*@
+    @*         <button @onclick="(()=>setTodo(item))">선택</button>
+    <button @onclick="(()=>DeleteTodo(item))">삭제</button>*@
+
+</div>
+
+
+<input @bind="NewTodo.title" />
+<button @onclick="AddTodo">추가</button>
+
+<button @onclick="TestBlob">BlobTest</button>
+
+
+@code {
+    TodoItem NewTodo = new TodoItem();
+    TodoItem? SelectTodo = new TodoItem();
+    TodoItem? DeleteTodoItem = new TodoItem();
+    TodoItem? Todos = new();
+
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Todos = await Http.GetFromJsonAsync<List<TodoItem>>("Todo");
+        Todos = await TodoService.GetTodoList();
+
+    }
+    //private async Task editTodoInput() => Todos = await Http.PutAsJsonAsync<TodoItem>("Todo", ThisTodo);
+    //private void EditTodo()
+    //{
+    //    // HttpResponseMessage response = await Http.PutAsJsonAsync<TodoItem>("Todo", SelectTodo);
+    //    // response.Content.ReadAsStringAsync();
+    //    TodoService.PutTodoItem(SelectTodo);
+    //    // if (response.StatusCode.Equals((int)200))
+    //    // {
+    //    //    await Http.GetFromJsonAsync<List<TodoItem>>("Todo");
+    //    // }
+    //    // var result = await response.Content.ReadFromJsonAsync<List<TodoItem>>();
+    //    // Todos = result;
+    //}
+
+    private void AddTodo()
+    {
+        // HttpResponseMessage response = await Http.PostAsJsonAsync<TodoItem>("Todo", NewTodo);
+        // var result = await response.Content.ReadFromJsonAsync<List<TodoItem>>();
+        // Todos = result;
+        TodoService.AddTodoItem(NewTodo);
+    }
+
+    //private async Task DeleteTodo(TodoItem todo)
+    //{
+    //    // HttpResponseMessage response = await Http.DeleteAsync($"Todo/{todo.Id}");
+    //    // var result = await response.Content.ReadFromJsonAsync<List<TodoItem>>();
+    //    Todos = await TodoService.DeleteTodoItem(todo);
+    //}
+    // private void AddTodo()
+
+    //private void setTodo(TodoItem todo)
+    //{
+    //    SelectTodo = todo;
+    //}
+
+    private async Task TestBlob()
+    {
+        await Http.GetAsync("api/blob");
+    }
+}

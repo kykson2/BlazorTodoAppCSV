@@ -1,0 +1,42 @@
+﻿@page "/nextTodoItem/{TodoItemId}"
+@inject TodoService TodoService
+
+<h3>@TodoItemId</h3>
+
+<div class="my-3">
+    @if (Todos.nextTodoId == null)
+        @Todos.title
+    else
+    {
+        <a href="/nextTodoItem/@Todos.nextTodoId">@Todos.title</a>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public string? TodoItemId { get; set; }
+
+    TodoItem Todos = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Todos = await Http.GetFromJsonAsync<List<TodoItem>>("Todo");
+        Todos = await TodoService.GetTodoList(TodoItemId);
+    }
+
+    
+
+    protected override async Task OnParametersSetAsync()
+    {
+        // Todos = await Http.GetFromJsonAsync<List<TodoItem>>("Todo");
+        Todos = await TodoService.GetTodoList(TodoItemId);
+    }
+
+
+    //public async Task<TodoItem> Get()
+    //{
+    //    var result = await TodoService.GetTodoList(nextTodoItemId);
+    //    return result;
+    //}
+
+}

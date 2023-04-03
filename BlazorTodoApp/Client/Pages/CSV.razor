@@ -1,0 +1,17 @@
+﻿@page "/CSV"
+@inject BlazorTodoApp.Client.Services.BlobClientService _BlobClientService;
+@using System;
+@using System.IO;
+@using Azure.Storage.Blobs;
+@using Azure.Storage.Blobs.Models;
+<h3>CSV</h3>
+
+<InputFile OnChange="((e) => Upload(e))" />
+
+
+@code {
+    private async Task Upload(InputFileChangeEventArgs e)
+    {
+        await _BlobClientService.CSVUpload(e);
+    }
+}
