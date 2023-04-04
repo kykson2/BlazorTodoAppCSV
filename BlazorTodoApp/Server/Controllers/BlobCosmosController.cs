@@ -18,7 +18,6 @@ namespace BlazorTodoApp.Server.Controllers
         [HttpGet]
         public async Task<List<BlobInfo>> Get(string id)
         {
-            await Console.Out.WriteLineAsync(id);
             var result = await _BlobConsmosService.Get();
             return result;
         }

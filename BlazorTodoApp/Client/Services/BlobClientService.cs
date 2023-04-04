@@ -84,16 +84,20 @@ namespace BlazorTodoApp.Client.Services
         {
             string? containerCSVSAS = await _http.GetStringAsync("api/Blob/CSVSASKey/csv");
             BlobContainerClient container = new(new Uri(containerCSVSAS));
-            BlobClient blobClient = container.GetBlobClient(e.File.Name);
+            // BlobClient blobClient = container.GetBlobClient(e.File.Name);
             foreach (var file in e.GetMultipleFiles(maxAllowedFiles))
             {
                 // SAS로 토큰을 이용해서 Blob 컨테이너에 업로드
                 var fileContent = new StreamContent(file.OpenReadStream(maxFileSize));
-                fileContent.Headers.ContentType = new MediaTypeHeaderValue("text/csv");
+                fileContent.Headers.ContentType = new MediaTypeHeaderValue(file.ContentType);
                 await container.UploadBlobAsync(file.Name, fileContent.ReadAsStream());
 
-                var csvObj = new CSVInfo() { fileName = e.File.Name, blobClient = blobClient };
-                await _http.PostAsJsonAsync("api/BlobCosmos/CSVPost", csvObj);
+                string encodingFileName = System.Web.HttpUtility.UrlEncode($"{file.Name}");
+                var csvInfo = new CSVInfo()
+                {
+                    fileName = encodingFileName
+                };
+                await _http.PostAsJsonAsync("api/Blob/CSVPost", csvInfo);
             }
         }
     }

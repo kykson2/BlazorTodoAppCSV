@@ -50,8 +50,13 @@ namespace BlazorTodoApp.Server.Services
 
             //BlobContainerClient tempbc = new(new Uri(containerSAS));
             //var blob = tempbc.GetBlobClient("LesserPanda.jpg");
-
+            
             return containerSAS;
+        }
+
+        public BlobClient GetCSVBlob(string blobName)
+        {
+            return _blobCsvContainerClient.GetBlobClient(blobName);
         }
 
         public string GetBlobUrl(string blobName)

@@ -3,7 +3,7 @@ using BlazorTodoApp.Shared;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
-
+using Azure.Storage.Blobs;
 
 namespace BlazorFileUpload.Server.Controllers
 {
@@ -15,11 +15,11 @@ namespace BlazorFileUpload.Server.Controllers
         private readonly BlobCosmosService _BlobConsmosService;
         private readonly CSVCosmosService _CSVCosmosService;
 
-        public BlobController(BlobServerService blobService, BlobCosmosService blobConsmosService)
+        public BlobController(BlobServerService blobService, BlobCosmosService blobConsmosService, CSVCosmosService cSVCosmosService)
         {
             _blobService = blobService;
             _BlobConsmosService = blobConsmosService;
-
+            _CSVCosmosService = cSVCosmosService;
         }
 
         [HttpGet]
@@ -49,10 +49,13 @@ namespace BlazorFileUpload.Server.Controllers
         }
 
         [HttpPost]
-        public async Task CSVPost(CSVInfo blobInfo)
+        public async Task CSVPost(CSVInfo csvInfo)
         {
-            blobInfo.id = Guid.NewGuid().ToString();
-            await _CSVCosmosService.Post(blobInfo);
+            csvInfo.Id = Guid.NewGuid().ToString();
+            var blobClient = _blobService.GetCSVBlob(csvInfo.fileName);
+            //FileStream fileStream = System.IO.File.OpenRead("");
+            //await blobClient.DownloadToAsync(fileStream);
+            await _CSVCosmosService.Post(csvInfo, blobClient);
         }
 
         [HttpDelete("{blobName}")] 

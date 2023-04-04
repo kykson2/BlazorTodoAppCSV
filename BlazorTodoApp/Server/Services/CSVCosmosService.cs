@@ -7,12 +7,19 @@ using CsvHelper;
 using CsvHelper.Configuration;
 using System.Globalization;
 using System.Text;
+using Microsoft.Azure.Cosmos.Serialization.HybridRow.RecordIO;
+using Microsoft.Azure.Cosmos.Serialization.HybridRow;
+using System.IO;
+using System.IO.Pipes;
+using Microsoft.Azure.Cosmos.Core;
+using Microsoft.Extensions.Azure;
 
 namespace BlazorTodoApp.Server.Services
 {
     public class CSVCosmosService
     {
         Microsoft.Azure.Cosmos.Container container;
+
         public CSVCosmosService()
         {
             Connection();
@@ -29,28 +36,55 @@ namespace BlazorTodoApp.Server.Services
 
 
 
-        public async Task Post(CSVInfo item)
+        public async Task Post(CSVInfo item, BlobClient blobClient)
         {
-            var result = await DownloadfromStream(item.blobClient);
+            await DownloadBlob(item, blobClient);
+            //await blobClient.DownloadToAsync(fileStream);
+            //FileInfo fi = new FileInfo(@"C:\Users\Public\Documents\backup.csv");
+            //using FileStream fs = fi.Open(FileMode.OpenOrCreate, FileAccess.Read, FileShare.Read);
+            //using StreamReader sr = new StreamReader(fs);
+            //int idx = 0;
+            //// using StreamReader reader = new(fs, Encoding.UTF8);
+            //List<CSVResultInfo> csvResult = new();
+            //using (var csv = new CsvReader(sr, CultureInfo.InvariantCulture))
+            //{
 
-
-            item.id = Guid.NewGuid().ToString();
-            //item.uri = $"https://gwkimlangcode.blob.core.windows.net/image/{item.name}";
-
-            await container.CreateItemAsync(result, new PartitionKey(item.id));
+            //    var records = csv.GetRecords<CSVResultInfo>();
+            //    foreach (var record in records)
+            //    {
+            //        csvResult.Add(record);
+            //        idx++;
+            //    }
+            //};
+            //item.results = csvResult;
+            //await container.CreateItemAsync(item, new PartitionKey(item.Id));
         }
 
-        public async Task<CSVResultInfo> DownloadfromStream(BlobClient blobClient)
+        public async Task DownloadBlob(CSVInfo item, BlobClient blobClient)
         {
-            UTF8Encoding utf8 = new();
-            FileStream fileStream = File.OpenWrite("");
-            await blobClient.DownloadToAsync(fileStream);
+            //FileStream fileStream = File.OpenWrite("/");
+            // using var fileStream = System.IO.File.OpenWrite(@"C:\Users\Public\Documents\backup.csv");
+            using MemoryStream ms = new();
+            await blobClient.DownloadToAsync(ms);
+            ms.Seek(0, SeekOrigin.Begin);
 
-            using var reader = new StreamReader(fileStream, utf8);
-            using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
-            var records = csv.GetRecords<CSVResultInfo>();
+            // using StreamReader sr = new(ms);
+            int idx = 0;
+            using StreamReader reader = new(ms, Encoding.UTF8);
+            List<CSVResultInfo> csvResult = new();
+            using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+            {
 
-            return (CSVResultInfo?)records;
+                var records = csv.GetRecords<CSVResultInfo>();
+                foreach (var record in records)
+                {
+                    csvResult.Add(record);
+                    idx++;
+                }
+            };
+            item.results = csvResult;
+            await container.CreateItemAsync(item, new PartitionKey(item.Id));
+            // await blobClient.DownloadToAsync(fileStream);
         }
     }
 }
