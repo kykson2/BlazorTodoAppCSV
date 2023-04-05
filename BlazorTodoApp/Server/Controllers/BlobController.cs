@@ -34,12 +34,18 @@ namespace BlazorFileUpload.Server.Controllers
             return _blobService.CSVSASKey();
         }
 
+        public async Task<List<string>> CSVGet()
+        {
+            return await _blobService.CSVGet();
+        }
 
         public string GetBlobUrl(string blobName)
         {
             var result = _blobService.GetBlobUrl(blobName);
             return result;
         }
+
+        
 
         [HttpPost]
         public async Task Post(BlobInfo blobInfo)

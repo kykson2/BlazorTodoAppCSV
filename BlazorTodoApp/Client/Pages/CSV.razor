@@ -4,14 +4,67 @@
 @using System.IO;
 @using Azure.Storage.Blobs;
 @using Azure.Storage.Blobs.Models;
+@using System.Reflection;
 <h3>CSV</h3>
 
-<InputFile OnChange="((e) => Upload(e))" />
+<div>
+    <InputFile OnChange="((e) => Upload(e))" />
+
+    <ul>
+        @foreach (var filename in csvBlobs)
+        {
+            <li>
+                @filename
+                <button @onclick="(async()=>{await GetCSVResult(filename); openCloseTable = true;})">테이블로 보기</button>
+            </li>
+        }
+    </ul>
+    @if (openCloseTable)
+    {
+        <table>
+            <thead>
+                <tr>
+                    @foreach (var item in myPropertyInfo)
+                    {
+                        <th>@item.Name</th>
+                    }
+                </tr>
+            </thead>
+            @foreach (var item in csv)
+            {
+                <tbody>
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Name</td>
+                    </tr>
+                </tbody>
+            }
+        </table>
+    }
+</div>
 
 
 @code {
+    private List<CSVResultInfo> csv = new();
+    private List<string> csvBlobs = new();
+    private bool openCloseTable = false;
+    private PropertyInfo[] myPropertyInfo;
+    
+    // private var csvKey = typeof(CSVResultInfo).GetProperties();
+    protected override async Task OnInitializedAsync()
+    {
+        csvBlobs = await _BlobClientService.GetCSVBlob();
+    }
+
     private async Task Upload(InputFileChangeEventArgs e)
     {
         await _BlobClientService.CSVUpload(e);
+        csvBlobs = await _BlobClientService.GetCSVBlob();
+    }
+
+    private async Task GetCSVResult(string fileName)
+    {
+        csv = await _BlobClientService.GetCSVCosmos(fileName);
+        myPropertyInfo = typeof(CSVResultInfo).GetProperties();
     }
 }

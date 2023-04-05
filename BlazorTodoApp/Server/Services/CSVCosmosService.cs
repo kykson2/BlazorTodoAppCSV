@@ -69,7 +69,6 @@ namespace BlazorTodoApp.Server.Services
             ms.Seek(0, SeekOrigin.Begin);
 
             // using StreamReader sr = new(ms);
-            int idx = 0;
             using StreamReader reader = new(ms, Encoding.UTF8);
             List<CSVResultInfo> csvResult = new();
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
@@ -79,7 +78,6 @@ namespace BlazorTodoApp.Server.Services
                 foreach (var record in records)
                 {
                     csvResult.Add(record);
-                    idx++;
                 }
             };
             item.results = csvResult;

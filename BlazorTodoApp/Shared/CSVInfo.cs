@@ -14,6 +14,8 @@ namespace BlazorTodoApp.Shared
         public string? fileName { get; set; }
 
         public List<CSVResultInfo>? results { get; set; }
+
+        public Dictionary<string, string>? keyValuePairs { get; set; }
     }
 
 

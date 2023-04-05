@@ -54,6 +54,18 @@ namespace BlazorTodoApp.Server.Services
             return containerSAS;
         }
 
+        public async Task<List<string>> CSVGet()
+        {
+            List<string> blobnames = new();
+            var blobs = _blobCsvContainerClient.GetBlobsAsync();
+            await foreach (var blob in blobs)
+            {
+                blobnames.Add(blob.Name);
+            }
+
+            return blobnames;
+        }
+
         public BlobClient GetCSVBlob(string blobName)
         {
             return _blobCsvContainerClient.GetBlobClient(blobName);

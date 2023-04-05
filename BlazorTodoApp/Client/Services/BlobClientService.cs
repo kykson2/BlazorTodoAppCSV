@@ -100,5 +100,17 @@ namespace BlazorTodoApp.Client.Services
                 await _http.PostAsJsonAsync("api/Blob/CSVPost", csvInfo);
             }
         }
+
+        public async Task<List<string>> GetCSVBlob()
+        {
+            var CSVBlobList = await _http.GetFromJsonAsync<List<string>>("api/Blob/CSVGet");
+            return CSVBlobList;
+        }
+
+        public async Task<List<CSVResultInfo>> GetCSVCosmos(string fileName)
+        {
+            var CSVitem = await _http.GetFromJsonAsync<List<CSVResultInfo>>($"api/BlobCosmos/CSVGetCosmos/{fileName}");
+            return CSVitem;
+        }
     }
 }

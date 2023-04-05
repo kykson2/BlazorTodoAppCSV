@@ -22,6 +22,13 @@ namespace BlazorTodoApp.Server.Controllers
             return result;
         }
 
+        [HttpGet("{fileName}")]
+        public async Task<List<CSVResultInfo>> CSVGetCosmos(string fileName)
+        {
+            var result = await _BlobConsmosService.GetCSVResult(fileName);
+            return result;
+        }
+
         [HttpPost]
         public async Task Post(BlobInfo item)
         {
