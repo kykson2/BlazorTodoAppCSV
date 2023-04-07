@@ -5,6 +5,8 @@
 @using Azure.Storage.Blobs;
 @using Azure.Storage.Blobs.Models;
 @using System.Reflection;
+
+@inject NavigationManager NavigationManagerReference;
 <h3>CSV</h3>
 
 <div>
@@ -15,7 +17,17 @@
         {
             <li>
                 @filename
-                <button @onclick="(async()=>{await GetCSVResult(filename); openCloseTable = true;})">테이블로 보기</button>
+                <button @onclick="(async()=>{await GetCSVResult(filename); openCloseTable = !openCloseTable;})">
+                    @if (openCloseTable)
+                    {
+                        <span>테이블로 보기</span>
+                    }
+                    else
+                    {
+                        <span>테이블 close</span>
+                    }
+                </button>
+                <button @onclick="()=>DownloadCSV(filename)">download</button>
             </li>
         }
     </ul>
@@ -49,7 +61,7 @@
     private List<string> csvBlobs = new();
     private bool openCloseTable = false;
     private PropertyInfo[] myPropertyInfo;
-    
+
     // private var csvKey = typeof(CSVResultInfo).GetProperties();
     protected override async Task OnInitializedAsync()
     {
@@ -66,5 +78,11 @@
     {
         csv = await _BlobClientService.GetCSVCosmos(fileName);
         myPropertyInfo = typeof(CSVResultInfo).GetProperties();
+    }
+
+    private async Task DownloadCSV(string filename)
+    {
+        var blobUri = await _BlobClientService.DownloadCSV(filename);
+        NavigationManagerReference.NavigateTo(blobUri);
     }
 }

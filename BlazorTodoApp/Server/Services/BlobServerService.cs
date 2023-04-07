@@ -3,6 +3,7 @@ using Azure.Storage.Sas;
 using Microsoft.Azure.Cosmos;
 using System.Security.Policy;
 using BlazorTodoApp.Shared;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BlazorTodoApp.Server.Services
 {
@@ -90,6 +91,21 @@ namespace BlazorTodoApp.Server.Services
         public void Delete(string name)
         {
             _blobContainerClient.DeleteBlob(name);
+        }
+
+        public async Task CSVBlobDownload(string fileName)
+        {
+            //BlobClient blobClient = _blobCsvContainerClient.GetBlobClient(fileName);
+            //string path = Environment.SpecialFolder.UserProfile + @"\Downloads";
+
+            //using (var stream = new MemoryStream())
+            //{
+            //    blobClient.DownloadToAsync(stream);
+            //    stream.Position = 0;
+
+            //    var contentType = (await blobClient.GetPropertiesAsync()).Value.ContentType;
+            //    return File(stream.ToString(), );
+            //}
         }
     }
 }

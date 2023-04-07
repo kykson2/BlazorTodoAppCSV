@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
-
 namespace BlazorFileUpload.Server.Controllers
 {
     [Route("api/[controller]")]

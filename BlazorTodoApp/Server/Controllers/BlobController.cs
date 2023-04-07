@@ -45,6 +45,11 @@ namespace BlazorFileUpload.Server.Controllers
             return result;
         }
 
+        [HttpGet("{fileName}")]
+        public async Task CSVBlobDownload(string fileName)
+        {
+            await _blobService.CSVBlobDownload(fileName);
+        }
         
 
         [HttpPost]
@@ -61,7 +66,7 @@ namespace BlazorFileUpload.Server.Controllers
             var blobClient = _blobService.GetCSVBlob(csvInfo.fileName);
             //FileStream fileStream = System.IO.File.OpenRead("");
             //await blobClient.DownloadToAsync(fileStream);
-            await _CSVCosmosService.Post(csvInfo, blobClient);
+            await _CSVCosmosService.UploadCosmosCSV(csvInfo, blobClient);
         }
 
         [HttpDelete("{blobName}")] 
