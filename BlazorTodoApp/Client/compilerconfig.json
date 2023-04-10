@@ -1,0 +1,22 @@
+﻿[
+  {
+    "outputFile": "wwwroot/Styles/index.css",
+    "inputFile": "wwwroot/Styles/index.scss"
+  },
+  {
+    "outputFile": "wwwroot/Styles/test.css",
+    "inputFile": "wwwroot/Styles/test.scss"
+  },
+  {
+    "outputFile": "wwwroot/Styles/corners.css",
+    "inputFile": "wwwroot/Styles/corners.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/CarbonBasic/theme.css",
+    "inputFile": "wwwroot/css/CarbonBasic/theme.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/CarbonBasic/carbon-configs.css",
+    "inputFile": "wwwroot/css/CarbonBasic/carbon-configs.scss"
+  }
+]

@@ -1,0 +1,22 @@
+﻿@use '@carbon/themes/scss/themes' as *;
+@use '@carbon/themes';
+
+:root {
+    @include themes.theme($g90);
+    color: var(--cds-text-primary, #000000);
+    background-color: var(--cds-background, #ffffff);
+}
+
+.g100 {
+    @include themes.theme($g100);
+    color: var(--cds-text-primary, #000000);
+    background-color: var(--cds-background, #ffffff);
+    --cds-border-subtle: var(--cds-border-subtle-00);
+}
+
+.g10 {
+    @include themes.theme($g10);
+    color: var(--cds-text-primary, #000000);
+    background-color: var(--cds-background, #ffffff);
+    --cds-border-subtle: var(--cds-border-subtle-00);
+}

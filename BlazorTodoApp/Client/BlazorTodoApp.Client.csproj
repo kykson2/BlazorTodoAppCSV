@@ -7,6 +7,160 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="compilerconfig.json" />
+    <Content Remove="wwwroot\css\CarbonBasic\carbon-configs.scss" />
+    <Content Remove="wwwroot\css\CarbonBasic\spacing.scss" />
+    <Content Remove="wwwroot\css\CarbonBasic\theme.scss" />
+    <Content Remove="wwwroot\css\CarbonBasic\type-classes.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="compilerconfig.json" />
+    <None Include="wwwroot\css\CarbonBasic\carbon-configs.scss" />
+    <None Include="wwwroot\css\CarbonBasic\spacing.scss" />
+    <None Include="wwwroot\css\CarbonBasic\theme.scss" />
+    <None Include="wwwroot\css\CarbonBasic\type-classes.scss" />
+    <None Include="wwwroot\lib\ibmplex\CHANGELOG.md" />
+    <None Include="wwwroot\lib\ibmplex\css\ibm-plex-font.scss" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Mono\fonts\complete\woff2\IBMPlexMono-Bold.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Mono\fonts\complete\woff2\IBMPlexMono-BoldItalic.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Mono\fonts\complete\woff2\IBMPlexMono-ExtraLight.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Mono\fonts\complete\woff2\IBMPlexMono-ExtraLightItalic.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Mono\fonts\complete\woff2\IBMPlexMono-Italic.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Mono\fonts\complete\woff2\IBMPlexMono-Light.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Mono\fonts\complete\woff2\IBMPlexMono-LightItalic.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Mono\fonts\complete\woff2\IBMPlexMono-Medium.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Mono\fonts\complete\woff2\IBMPlexMono-MediumItalic.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Mono\fonts\complete\woff2\IBMPlexMono-Regular.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Mono\fonts\complete\woff2\IBMPlexMono-SemiBold.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Mono\fonts\complete\woff2\IBMPlexMono-SemiBoldItalic.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Mono\fonts\complete\woff2\IBMPlexMono-Text.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Mono\fonts\complete\woff2\IBMPlexMono-TextItalic.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Mono\fonts\complete\woff2\IBMPlexMono-Thin.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Mono\fonts\complete\woff2\IBMPlexMono-ThinItalic.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Arabic\fonts\complete\woff2\IBMPlexSansArabic-Bold.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Arabic\fonts\complete\woff2\IBMPlexSansArabic-ExtraLight.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Arabic\fonts\complete\woff2\IBMPlexSansArabic-Light.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Arabic\fonts\complete\woff2\IBMPlexSansArabic-Medium.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Arabic\fonts\complete\woff2\IBMPlexSansArabic-Regular.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Arabic\fonts\complete\woff2\IBMPlexSansArabic-SemiBold.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Arabic\fonts\complete\woff2\IBMPlexSansArabic-Text.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Arabic\fonts\complete\woff2\IBMPlexSansArabic-Thin.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Condensed\fonts\complete\woff2\IBMPlexSansCondensed-Bold.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Condensed\fonts\complete\woff2\IBMPlexSansCondensed-BoldItalic.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Condensed\fonts\complete\woff2\IBMPlexSansCondensed-ExtraLight.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Condensed\fonts\complete\woff2\IBMPlexSansCondensed-ExtraLightItalic.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Condensed\fonts\complete\woff2\IBMPlexSansCondensed-Italic.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Condensed\fonts\complete\woff2\IBMPlexSansCondensed-Light.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Condensed\fonts\complete\woff2\IBMPlexSansCondensed-LightItalic.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Condensed\fonts\complete\woff2\IBMPlexSansCondensed-Medium.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Condensed\fonts\complete\woff2\IBMPlexSansCondensed-MediumItalic.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Condensed\fonts\complete\woff2\IBMPlexSansCondensed-Regular.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Condensed\fonts\complete\woff2\IBMPlexSansCondensed-SemiBold.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Condensed\fonts\complete\woff2\IBMPlexSansCondensed-SemiBoldItalic.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Condensed\fonts\complete\woff2\IBMPlexSansCondensed-Text.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Condensed\fonts\complete\woff2\IBMPlexSansCondensed-TextItalic.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Condensed\fonts\complete\woff2\IBMPlexSansCondensed-Thin.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Condensed\fonts\complete\woff2\IBMPlexSansCondensed-ThinItalic.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Devanagari\fonts\complete\woff2\IBMPlexSansDevanagari-Bold.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Devanagari\fonts\complete\woff2\IBMPlexSansDevanagari-ExtraLight.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Devanagari\fonts\complete\woff2\IBMPlexSansDevanagari-Light.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Devanagari\fonts\complete\woff2\IBMPlexSansDevanagari-Medium.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Devanagari\fonts\complete\woff2\IBMPlexSansDevanagari-Regular.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Devanagari\fonts\complete\woff2\IBMPlexSansDevanagari-SemiBold.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Devanagari\fonts\complete\woff2\IBMPlexSansDevanagari-Text.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Devanagari\fonts\complete\woff2\IBMPlexSansDevanagari-Thin.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Hebrew\fonts\complete\woff2\IBMPlexSansHebrew-Bold.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Hebrew\fonts\complete\woff2\IBMPlexSansHebrew-ExtraLight.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Hebrew\fonts\complete\woff2\IBMPlexSansHebrew-Light.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Hebrew\fonts\complete\woff2\IBMPlexSansHebrew-Medium.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Hebrew\fonts\complete\woff2\IBMPlexSansHebrew-Regular.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Hebrew\fonts\complete\woff2\IBMPlexSansHebrew-SemiBold.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Hebrew\fonts\complete\woff2\IBMPlexSansHebrew-Text.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Hebrew\fonts\complete\woff2\IBMPlexSansHebrew-Thin.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-JP\fonts\complete\woff2\hinted\IBMPlexSansJP-Bold.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-JP\fonts\complete\woff2\hinted\IBMPlexSansJP-ExtraLight.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-JP\fonts\complete\woff2\hinted\IBMPlexSansJP-Light.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-JP\fonts\complete\woff2\hinted\IBMPlexSansJP-Medium.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-JP\fonts\complete\woff2\hinted\IBMPlexSansJP-Regular.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-JP\fonts\complete\woff2\hinted\IBMPlexSansJP-SemiBold.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-JP\fonts\complete\woff2\hinted\IBMPlexSansJP-Text.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-JP\fonts\complete\woff2\hinted\IBMPlexSansJP-Thin.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-JP\fonts\complete\woff2\unhinted\IBMPlexSansJP-Bold.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-JP\fonts\complete\woff2\unhinted\IBMPlexSansJP-ExtraLight.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-JP\fonts\complete\woff2\unhinted\IBMPlexSansJP-Light.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-JP\fonts\complete\woff2\unhinted\IBMPlexSansJP-Medium.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-JP\fonts\complete\woff2\unhinted\IBMPlexSansJP-Regular.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-JP\fonts\complete\woff2\unhinted\IBMPlexSansJP-SemiBold.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-JP\fonts\complete\woff2\unhinted\IBMPlexSansJP-Text.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-JP\fonts\complete\woff2\unhinted\IBMPlexSansJP-Thin.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-KR\fonts\complete\woff2\hinted\IBMPlexSansKR-Bold.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-KR\fonts\complete\woff2\hinted\IBMPlexSansKR-ExtraLight.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-KR\fonts\complete\woff2\hinted\IBMPlexSansKR-Light.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-KR\fonts\complete\woff2\hinted\IBMPlexSansKR-Medium.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-KR\fonts\complete\woff2\hinted\IBMPlexSansKR-Regular.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-KR\fonts\complete\woff2\hinted\IBMPlexSansKR-SemiBold.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-KR\fonts\complete\woff2\hinted\IBMPlexSansKR-Text.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-KR\fonts\complete\woff2\hinted\IBMPlexSansKR-Thin.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-KR\fonts\complete\woff2\unhinted\IBMPlexSansKR-Bold.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-KR\fonts\complete\woff2\unhinted\IBMPlexSansKR-ExtraLight.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-KR\fonts\complete\woff2\unhinted\IBMPlexSansKR-Light.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-KR\fonts\complete\woff2\unhinted\IBMPlexSansKR-Medium.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-KR\fonts\complete\woff2\unhinted\IBMPlexSansKR-Regular.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-KR\fonts\complete\woff2\unhinted\IBMPlexSansKR-SemiBold.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-KR\fonts\complete\woff2\unhinted\IBMPlexSansKR-Text.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-KR\fonts\complete\woff2\unhinted\IBMPlexSansKR-Thin.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Thai-Looped\fonts\complete\woff2\IBMPlexSansThaiLooped-Bold.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Thai-Looped\fonts\complete\woff2\IBMPlexSansThaiLooped-ExtraLight.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Thai-Looped\fonts\complete\woff2\IBMPlexSansThaiLooped-Light.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Thai-Looped\fonts\complete\woff2\IBMPlexSansThaiLooped-Medium.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Thai-Looped\fonts\complete\woff2\IBMPlexSansThaiLooped-Regular.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Thai-Looped\fonts\complete\woff2\IBMPlexSansThaiLooped-SemiBold.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Thai-Looped\fonts\complete\woff2\IBMPlexSansThaiLooped-Text.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Thai-Looped\fonts\complete\woff2\IBMPlexSansThaiLooped-Thin.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Thai\fonts\complete\woff2\IBMPlexSansThai-Bold.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Thai\fonts\complete\woff2\IBMPlexSansThai-ExtraLight.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Thai\fonts\complete\woff2\IBMPlexSansThai-Light.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Thai\fonts\complete\woff2\IBMPlexSansThai-Medium.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Thai\fonts\complete\woff2\IBMPlexSansThai-Regular.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Thai\fonts\complete\woff2\IBMPlexSansThai-SemiBold.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Thai\fonts\complete\woff2\IBMPlexSansThai-Text.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans-Thai\fonts\complete\woff2\IBMPlexSansThai-Thin.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans\fonts\complete\woff2\IBMPlexSans-Bold.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans\fonts\complete\woff2\IBMPlexSans-BoldItalic.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans\fonts\complete\woff2\IBMPlexSans-ExtraLight.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans\fonts\complete\woff2\IBMPlexSans-ExtraLightItalic.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans\fonts\complete\woff2\IBMPlexSans-Italic.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans\fonts\complete\woff2\IBMPlexSans-Light.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans\fonts\complete\woff2\IBMPlexSans-LightItalic.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans\fonts\complete\woff2\IBMPlexSans-Medium.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans\fonts\complete\woff2\IBMPlexSans-MediumItalic.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans\fonts\complete\woff2\IBMPlexSans-Regular.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans\fonts\complete\woff2\IBMPlexSans-SemiBold.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans\fonts\complete\woff2\IBMPlexSans-SemiBoldItalic.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans\fonts\complete\woff2\IBMPlexSans-Text.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans\fonts\complete\woff2\IBMPlexSans-TextItalic.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans\fonts\complete\woff2\IBMPlexSans-Thin.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Sans\fonts\complete\woff2\IBMPlexSans-ThinItalic.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Serif\fonts\complete\woff2\IBMPlexSerif-Bold.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Serif\fonts\complete\woff2\IBMPlexSerif-BoldItalic.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Serif\fonts\complete\woff2\IBMPlexSerif-ExtraLight.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Serif\fonts\complete\woff2\IBMPlexSerif-ExtraLightItalic.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Serif\fonts\complete\woff2\IBMPlexSerif-Italic.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Serif\fonts\complete\woff2\IBMPlexSerif-Light.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Serif\fonts\complete\woff2\IBMPlexSerif-LightItalic.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Serif\fonts\complete\woff2\IBMPlexSerif-Medium.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Serif\fonts\complete\woff2\IBMPlexSerif-MediumItalic.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Serif\fonts\complete\woff2\IBMPlexSerif-Regular.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Serif\fonts\complete\woff2\IBMPlexSerif-SemiBold.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Serif\fonts\complete\woff2\IBMPlexSerif-SemiBoldItalic.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Serif\fonts\complete\woff2\IBMPlexSerif-Text.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Serif\fonts\complete\woff2\IBMPlexSerif-TextItalic.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Serif\fonts\complete\woff2\IBMPlexSerif-Thin.woff2" />
+    <None Include="wwwroot\lib\ibmplex\IBM-Plex-Serif\fonts\complete\woff2\IBMPlexSerif-ThinItalic.woff2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Azure.Storage.Blobs" Version="12.15.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.3" PrivateAssets="all" />
@@ -15,6 +169,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Shared\BlazorTodoApp.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Conponents\" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,3 @@
+﻿@use '@carbon/styles' with ($css--font-face: false);
+@use '@carbon/styles/scss/grid';
+@include grid.flex-grid();

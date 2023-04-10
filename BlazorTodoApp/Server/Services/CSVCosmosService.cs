@@ -63,8 +63,8 @@ namespace BlazorTodoApp.Server.Services
         {
             using MemoryStream ms = new();
             await blobClient.DownloadToAsync(ms);
-            // ms.Seek(0, SeekOrigin.Begin);
-            ms.Position = 0;
+            ms.Seek(0, SeekOrigin.Begin);
+            // ms.Position = 0;
 
             // using StreamReader sr = new(ms);
             using StreamReader reader = new(ms, Encoding.UTF8);
@@ -80,18 +80,21 @@ namespace BlazorTodoApp.Server.Services
             };
             item.results = csvResult;
 
-
-            var searchCSV = await GetCSVResult(item.fileName);
-            // var target = await container.ReadItemAsync<CSVInfo>(item.Id, new PartitionKey(item.Id));
-
-            if(searchCSV.fileName != null)
+            if (item.fileName is not null)
             {
-                searchCSV.results = csvResult;
-                await container.UpsertItemAsync<CSVInfo>(searchCSV, new PartitionKey(searchCSV.Id));
-            }
-            else
-            {
-                await container.CreateItemAsync(item, new PartitionKey(item.Id));
+                var searchCSV = await GetCSVResult(item.fileName);
+                // var target = await container.ReadItemAsync<CSVInfo>(item.Id, new PartitionKey(item.Id));
+
+                if (searchCSV.fileName != null)
+                {
+                    searchCSV.results = csvResult;
+                    await container.UpsertItemAsync<CSVInfo>(searchCSV, new PartitionKey(searchCSV.Id));
+                }
+                else
+                {
+                    await container.CreateItemAsync(item, new PartitionKey(item.Id));
+                }
+
             }
 
             //await blobClient.DownloadToAsync(fileStream);
