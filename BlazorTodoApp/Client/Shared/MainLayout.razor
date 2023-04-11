@@ -1,17 +1,80 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
-
-    <main>
-        <div class="top-row px-4">
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+<div class="">
+    @*<div class="sidebar">
+    <NavMenu />
+    </div>*@
+    <header aria-label="Blob PlayGround" class="cds--header">
+        <a class="cds--skip-to-content" href="#main-content" tabindex="0">Skip to main content</a><button aria-label="Open menu" class="cds--header__action cds--header__menu-trigger cds--header__menu-toggle cds--header__menu-toggle__hidden" title="Open menu" type="button">
+            <svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true">
+                <path d="M2 14.8H18V16H2zM2 11.2H18V12.399999999999999H2zM2 7.6H18V8.799999999999999H2zM2 4H18V5.2H2z"></path>
+            </svg>
+        </button><a class="cds--header__name" href="#"><span class="cds--header__name--prefix">Blob PlayGround</span></a>
+        <nav aria-label="Blob PlayGround [Platform]" class="cds--header__nav">
+            <ul class="cds--header__menu-bar">
+                <li><a href="fileUpload" class="cds--header__menu-item" tabindex="0"><span class="cds--text-truncate--end">FileUpload</span></a></li>
+                <li><a href="csv" class="cds--header__menu-item" tabindex="0"><span class="cds--text-truncate--end">CSV</span></a></li>
+                <li><a href="todo" class="cds--header__menu-item" tabindex="0"><span class="cds--text-truncate--end">TODO</span></a></li>
+            </ul>
+        </nav>
+        <div class="cds--header__global">
+            <span class="cds--popover-container cds--popover--caret cds--popover--high-contrast cds--popover--bottom-right cds--tooltip cds--icon-tooltip">
+                <button aria-label="App Switcher" aria-labelledby="tooltip-41" class="cds--btn--icon-only cds--header__action cds--btn cds--btn--primary cds--btn--icon-only cds--btn cds--btn--primary" type="button">
+                    <svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true">
+                        <path d="M14 4H18V8H14zM4 4H8V8H4zM24 4H28V8H24zM14 14H18V18H14zM4 14H8V18H4zM24 14H28V18H24zM14 24H18V28H14zM4 24H8V28H4zM24 24H28V28H24z"></path>
+                    </svg>
+                </button><span aria-hidden="true" id="tooltip-41" role="tooltip" class="cds--popover"><span class="cds--popover-content cds--tooltip-content">App Switcher</span><span class="cds--popover-caret"></span></span>
+            </span>
         </div>
+        <div class="cds--side-nav__overlay"></div>
+        <nav class="cds--side-nav__navigation cds--side-nav cds--side-nav--ux bg-secondary" aria-label="Side navigation">
+            <ul class="cds--side-nav__items">
+                <li class="cds--side-nav__item cds--side-nav__item--icon">
+                    <button aria-expanded="@(subNavItemOnOff.ToString().ToLower())" class="cds--side-nav__submenu" type="button" @onclick="(()=>{subNavItemOnOff = !subNavItemOnOff;})">
+                        <div class="cds--side-nav__icon">
+                            <svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+                                <path d="M4.1 12.6l-.6.8c.6.5 1.3.9 2.1 1.2l.3-.9C5.3 13.4 4.7 13 4.1 12.6zM2.1 9l-1 .2c.1.8.4 1.6.8 2.3L2.8 11C2.4 10.4 2.2 9.7 2.1 9zM5.9 2.4L5.6 1.4C4.8 1.7 4.1 2.1 3.5 2.7l.6.8C4.7 3 5.3 2.6 5.9 2.4zM2.8 5L1.9 4.5C1.5 5.2 1.3 6 1.1 6.8l1 .2C2.2 6.3 2.5 5.6 2.8 5zM8 1v1c3.3 0 6 2.7 6 6s-2.7 6-6 6v1c3.9 0 7-3.1 7-7S11.9 1 8 1z"></path>
+                            </svg>
+                        </div>
+                        <span class="cds--side-nav__submenu-title" title="Category title">Category title</span>
+                        <div class="cds--side-nav__icon cds--side-nav__icon--small cds--side-nav__submenu-chevron">
+                            <svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true">
+                                <path d="M16 22L6 12 7.4 10.6 16 19.2 24.6 10.6 26 12z"></path>
+                            </svg>
+                        </div>
+                    </button>
+                    <ul class="cds--side-nav__menu">
+                        <li class="cds--side-nav__menu-item"><a href="https://www.carbondesignsystem.com/" class="cds--side-nav__link"><span class="cds--side-nav__link-text">Link</span></a></li>
+                        <li class="cds--side-nav__menu-item"><a href="https://www.carbondesignsystem.com/" class="cds--side-nav__link"><span class="cds--side-nav__link-text">Link</span></a></li>
+                        <li class="cds--side-nav__menu-item"><a href="https://www.carbondesignsystem.com/" class="cds--side-nav__link"><span class="cds--side-nav__link-text">Link</span></a></li>
+                    </ul>
+                </li>
 
-        <article class="content px-4">
-            @Body
-        </article>
+            </ul>
+        </nav>
+    </header>
+    <main id="main-content" class="cds--content mt-8 pl-10" style="height: 100%; margin: 0px; width: 100%;">
+        <div class="cds--grid">
+            <div class="cds--row">
+                <div class="cds--col-lg-13 cds--offset-lg-3">
+                    @Body
+                </div>
+            </div>
+        </div>
     </main>
+@*    <main id="main-content" class="mx-5 mb-5 mt-10">
+        <div class="">
+            @Body
+        </div>
+    </main>*@
 </div>
+
+@code {
+    private bool subNavItemOnOff = false;
+
+    private string IsOpen()
+    {
+        string result = $"{subNavItemOnOff}";
+        return result.ToLower();
+    }
+}
