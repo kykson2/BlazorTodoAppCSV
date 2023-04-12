@@ -12,9 +12,14 @@
 <div class=" d-flex flex-column">
     <InputFile OnChange="((e) => Upload(e))" style="display:none" id="inputFile" />
     <label for="inputFile" class="cds--btn cds--btn--primary text-md-center mt-4 p-5 rounded-2">Upload CSV!</label>
-    <hr />
-    <ul class="d-flex flex-column mt-4 gap-4">
-        @if (csvBlobs.Count() == 0)
+    <ul class="d-flex flex-column mt-8 gap-4">
+        <li class="d-inline-flex gap-3">
+            <p class="flex-grow-1">CSV 파일이름</p>
+
+            <p class="text-center" style="width:102px;">다운로드</p>
+        </li>
+    
+        @if (loadingView)
         {
             <li class="cds--inline-loading">
                 <div class="inline cds--inline-loading__animation">
@@ -31,24 +36,27 @@
         }
         else
         {
-            <li class="d-inline-flex gap-3">
-                <p class="flex-grow-1">CSV 파일이름</p>
-
-                <p class="text-center" style="width:102px;">다운로드</p>
-            </li>
-            @foreach (var filename in csvBlobs)
+            if (csvBlobs.Count() != 0)
             {
-                <li class="@(compareName(selectListFileName, filename) ? "bg-primary" : "") d-inline-flex align-items-center gap-3 p-3 rounded-3">
-                    <p class="flex-grow-1">@filename</p>
-                    <button class="cds--btn cds--btn--secondary p-3 rounded-2" type="button" disabled=@(compareName(selectListFileName, filename))
+
+                @foreach (var filename in csvBlobs)
+                {
+                    <li class="@(compareName(selectListFileName, filename) ? "bg-primary" : "") d-inline-flex align-items-center gap-3 p-3 rounded-3">
+                        <p class="flex-grow-1">@filename</p>
+                        <button class="cds--btn cds--btn--secondary p-3 rounded-2" type="button" disabled=@(compareName(selectListFileName, filename))
                     @onclick="@(async ()=>{
                             await GetCSVResult(filename);
                             selectListFileName = filename;
                         })">
-                        CSV 내용 보기
-                    </button>
-                    <button class="cds--btn cds--btn--ghost" @onclick="()=>DownloadCSV(filename)">DownLoad</button>
-                </li>
+                            CSV 내용 보기
+                        </button>
+                        <button class="cds--btn cds--btn--ghost rounded-2" @onclick="()=>DownloadCSV(filename)">DownLoad</button>
+                    </li>
+                }
+            } 
+            else
+            {
+                <li>저장된 CSV가 없습니다.</li>
             }
         }
     </ul>
@@ -90,11 +98,13 @@
     private bool openCloseTable = false;
     private PropertyInfo[] myPropertyInfo;
     private string selectListFileName = "";
+    private bool loadingView = true;
 
     // private var csvKey = typeof(CSVResultInfo).GetProperties();
     protected override async Task OnInitializedAsync()
     {
         csvBlobs = await _BlobClientService.GetCSVBlob();
+        loadingView = false;
     }
 
     private async Task Upload(InputFileChangeEventArgs e)
