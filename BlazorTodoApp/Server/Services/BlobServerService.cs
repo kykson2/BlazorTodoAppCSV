@@ -39,10 +39,6 @@ namespace BlazorTodoApp.Server.Services
         public string SASKey()
         {
             string containerSAS = GetSAS();
-
-            //BlobContainerClient tempbc = new(new Uri(containerSAS));
-            //var blob = tempbc.GetBlobClient("LesserPanda.jpg");
-
             return containerSAS;
         }
         public string CSVSASKey()

@@ -38,9 +38,13 @@
             </li>
             @foreach (var filename in csvBlobs)
             {
-                <li class="d-inline-flex align-items-center gap-3">
+                <li class="@(compareName(selectListFileName, filename) ? "bg-primary" : "") d-inline-flex align-items-center gap-3 p-3 rounded-3">
                     <p class="flex-grow-1">@filename</p>
-                    <button class="cds--btn cds--btn--secondary p-3 rounded-2 " type="button" @onclick="(async()=>{await GetCSVResult(filename); openCloseTable = true;})">
+                    <button class="cds--btn cds--btn--secondary p-3 rounded-2" type="button" disabled=@(compareName(selectListFileName, filename))
+                    @onclick="@(async ()=>{
+                            await GetCSVResult(filename);
+                            selectListFileName = filename;
+                        })">
                         CSV 내용 보기
                     </button>
                     <button class="cds--btn cds--btn--ghost" @onclick="()=>DownloadCSV(filename)">DownLoad</button>
@@ -52,10 +56,10 @@
     @if (openCloseTable)
     {
         <div class="d-flex flex-column position-relative">
-            <button class="cds--btn cds--btn--secondary p-3 rounded-2 w-20 mt-5 position-absolute" style="right:0;" type="button" @onclick="(()=>{openCloseTable = false;})">
+            <button class="cds--btn cds--btn--secondary p-3 rounded-2 w-20 mt-5 position-absolute" style="right:0;" type="button" @onclick="(()=>{openCloseTable = false; selectListFileName = null; })">
                 <p>테이블 닫기</p>
             </button>
-            <table class="cds--data-table cds--data-table--xl mt-12 cds--grid">
+            <table class="cds--data-table cds--data-table--lg mt-12 cds--grid">
                 <thead>
                     <tr class="">
                         @foreach (var item in myPropertyInfo)
@@ -76,8 +80,8 @@
             </table>
         </div>
     }
-
 </div>
+
 
 
 @code {
@@ -85,6 +89,7 @@
     private List<string> csvBlobs = new();
     private bool openCloseTable = false;
     private PropertyInfo[] myPropertyInfo;
+    private string selectListFileName = "";
 
     // private var csvKey = typeof(CSVResultInfo).GetProperties();
     protected override async Task OnInitializedAsync()
@@ -101,6 +106,7 @@
     private async Task GetCSVResult(string fileName)
     {
         csv = await _BlobClientService.GetCSVCosmos(fileName);
+        openCloseTable = true;
         myPropertyInfo = typeof(CSVResultInfo).GetProperties();
     }
 
@@ -108,5 +114,10 @@
     {
         var blobUri = await _BlobClientService.DownloadCSV(filename);
         NavigationManagerReference.NavigateTo(blobUri);
+    }
+
+    private bool compareName(string selectListFileName, string filename)
+    {
+        return selectListFileName == filename;
     }
 }

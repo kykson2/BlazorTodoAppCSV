@@ -66,7 +66,6 @@ namespace BlazorTodoApp.Server.Services
             ms.Seek(0, SeekOrigin.Begin);
             // ms.Position = 0;
 
-            // using StreamReader sr = new(ms);
             using StreamReader reader = new(ms, Encoding.UTF8);
             List<CSVResultInfo> csvResult = new();
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
@@ -96,51 +95,6 @@ namespace BlazorTodoApp.Server.Services
                 }
 
             }
-
-            //await blobClient.DownloadToAsync(fileStream);
-            //FileInfo fi = new FileInfo(@"C:\Users\Public\Documents\backup.csv");
-            //using FileStream fs = fi.Open(FileMode.OpenOrCreate, FileAccess.Read, FileShare.Read);
-            //using StreamReader sr = new StreamReader(fs);
-            //int idx = 0;
-            //// using StreamReader reader = new(fs, Encoding.UTF8);
-            //List<CSVResultInfo> csvResult = new();
-            //using (var csv = new CsvReader(sr, CultureInfo.InvariantCulture))
-            //{
-
-            //    var records = csv.GetRecords<CSVResultInfo>();
-            //    foreach (var record in records)
-            //    {
-            //        csvResult.Add(record);
-            //        idx++;
-            //    }
-            //};
-            //item.results = csvResult;
-            //await container.CreateItemAsync(item, new PartitionKey(item.Id));
         }
-
-        //public async Task DownloadBlob(CSVInfo item, BlobClient blobClient)
-        //{
-        //    //FileStream fileStream = File.OpenWrite("/");
-        //    // using var fileStream = System.IO.File.OpenWrite(@"C:\Users\Public\Documents\backup.csv");
-        //    using MemoryStream ms = new();
-        //    await blobClient.DownloadToAsync(ms);
-        //    ms.Seek(0, SeekOrigin.Begin);
-
-        //    // using StreamReader sr = new(ms);
-        //    using StreamReader reader = new(ms, Encoding.UTF8);
-        //    List<CSVResultInfo> csvResult = new();
-        //    using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
-        //    {
-
-        //        var records = csv.GetRecords<CSVResultInfo>();
-        //        foreach (var record in records)
-        //        {
-        //            csvResult.Add(record);
-        //        }
-        //    };
-        //    item.results = csvResult;
-        //    await container.CreateItemAsync(item, new PartitionKey(item.Id));
-        //    // await blobClient.DownloadToAsync(fileStream);
-        //}
     }
 }

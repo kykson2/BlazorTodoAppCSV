@@ -1,21 +1,23 @@
 ﻿@inherits LayoutComponentBase
 
 <div class="">
-    @*<div class="sidebar">
-    <NavMenu />
-    </div>*@
     <header aria-label="Blob PlayGround" class="cds--header">
         <a class="cds--skip-to-content" href="#main-content" tabindex="0">Skip to main content</a>
-        <button aria-label="Open menu" @onclick="(()=>{sidebarOnOff = !sidebarOnOff;})" class=@(sidebarOnOff ? "cds--header__action cds--header__menu-trigger cds--header__menu-toggle cds--header__menu-toggle__hidden" : "cds--header__action cds--header__menu-trigger cds--header__action--active cds--header__menu-toggle cds--header__menu-toggle__hidden") title="Open menu" type="button">
+        <button aria-label="Open menu" @onclick="(()=>{sidebarOnOff = !sidebarOnOff;})"
+                class="@(sidebarOnOff ?
+                "cds--header__action--active" : "") 
+                cds--header__action cds--header__menu-trigger cds--header__menu-toggle cds--header__menu-toggle__hidden"
+                title="Open menu" type="button">
             <svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true">
                 <path d="M2 14.8H18V16H2zM2 11.2H18V12.399999999999999H2zM2 7.6H18V8.799999999999999H2zM2 4H18V5.2H2z"></path>
             </svg>
         </button><a class="cds--header__name" href="#"><span class="cds--header__name--prefix">Blob PlayGround</span></a>
         <nav aria-label="Blob PlayGround [Platform]" class="cds--header__nav">
             <ul class="cds--header__menu-bar">
-                <li><a href="fileUpload" class="cds--header__menu-item" tabindex="0"><span class="cds--text-truncate--end">FileUpload</span></a></li>
-                <li><a href="csv" class="cds--header__menu-item" tabindex="0"><span class="cds--text-truncate--end">CSV</span></a></li>
-                <li><a href="todo" class="cds--header__menu-item" tabindex="0"><span class="cds--text-truncate--end">TODO</span></a></li>
+                @foreach (var item in pagesDic)
+                {
+                    <li><a href="@item.Key" class="cds--header__menu-item" tabindex="0"><span class="cds--text-truncate--end">@item.Value</span></a></li>
+                }
             </ul>
         </nav>
         <div class="cds--header__global">
@@ -24,17 +26,27 @@
                     <svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true">
                         <path d="M14 4H18V8H14zM4 4H8V8H4zM24 4H28V8H24zM14 14H18V18H14zM4 14H8V18H4zM24 14H28V18H24zM14 24H18V28H14zM4 24H8V28H4zM24 24H28V28H24z"></path>
                     </svg>
-                </button><span aria-hidden="true" id="tooltip-41" role="tooltip" class="cds--popover"><span class="cds--popover-content cds--tooltip-content">App Switcher</span><span class="cds--popover-caret"></span></span>
+                </button><span aria-hidden="true" id="tooltip-41" role="tooltip" class="cds--popover">
+                    <span class="cds--popover-content cds--tooltip-content">
+                        App Switcher
+                    </span>
+                    <span class="cds--popover-caret">
+
+                    </span>
+                </span>
             </span>
         </div>
-        <div class=@(sidebarOnOff ? "cds--side-nav__overlay" : "cds--side-nav__overlay cds--side-nav__overlay-active")></div>
-        <nav class=@(sidebarOnOff ? "cds--side-nav__navigation cds--side-nav cds--side-nav--ux bg-secondary": "cds--side-nav__navigation cds--side-nav cds--side-nav--expanded cds--side-nav--ux") aria-label="Side navigation">
+        <div class="@(sidebarOnOff ?
+             "cds--side-nav__overlay-active" : "") cds--side-nav__overlay"></div>
+        <nav class="@(sidebarOnOff ?
+             "cds--side-nav--expanded": "") cds--side-nav__navigation cds--side-nav cds--side-nav--ux bg-secondary"
+             aria-label="Side navigation">
             <ul class="cds--side-nav__items">
-                <ul class="cds--side-nav__header-navigation cds--side-nav__header-divider">
-                    <li><a href="fileUpload" class="cds--header__menu-item" tabindex="0"><span class="cds--text-truncate--end">FileUpload</span></a></li>
-                    <li><a href="csv" class="cds--header__menu-item" tabindex="0"><span class="cds--text-truncate--end">CSV</span></a></li>
-                    <li><a href="todo" class="cds--header__menu-item" tabindex="0"><span class="cds--text-truncate--end">TODO</span></a></li>
-                   
+                <ul class="cds--side-nav__header-navigation cds--side-nav__header-divider ">
+                    @foreach (var item in pagesDic)
+                    {
+                        <li><a href="@item.Key" class="cds--header__menu-item bg-secondary" tabindex="0" @onclick="@(()=>sidebarOnOff=false)"><span class="cds--text-truncate--end">@item.Value</span></a></li>
+                    }
                 </ul>
                 <li class="cds--side-nav__item cds--side-nav__item--icon">
                     <button aria-expanded="@(subNavItemOnOff.ToString().ToLower())" class="cds--side-nav__submenu" type="button" @onclick="(()=>{subNavItemOnOff = !subNavItemOnOff;})">
@@ -60,7 +72,7 @@
             </ul>
         </nav>
     </header>
-    <main id="main-content" class="cds--content mt-8 pl-10" style="height: 100%; margin: 0px; width: 100%;">
+    <main id="main-content" class="cds--content mt-8 px-10" style="height: 100%; margin: 0px; width: 100%;">
         <div class="cds--grid">
             <div class="cds--row">
                 <div class="cds--col-lg-13 cds--offset-lg-3">
@@ -69,19 +81,16 @@
             </div>
         </div>
     </main>
-    @*    <main id="main-content" class="mx-5 mb-5 mt-10">
-    <div class="">
-    @Body
-    </div>
-    </main>*@
 </div>
 
 @code {
     private bool subNavItemOnOff = false;
     private bool sidebarOnOff = false;
-    private bool IsOpen()
+    private Dictionary<string, string> pagesDic = new Dictionary<string, string>()
     {
-        sidebarOnOff = !sidebarOnOff;
-        return sidebarOnOff;
-    }
+        { "fileUpload", "FileUpload" },
+        { "csv", "CSV" },
+        { "todo", "TODO" }
+
+    };
 }
